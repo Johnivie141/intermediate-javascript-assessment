@@ -13,7 +13,14 @@
 // return the result of your updateAnimal invocation
 
 // CODE HERE...
-
+function callBinding(magicAnimals,updateAnimal,id){
+   
+    var filtered = magicAnimals.filter((x)=>{return x.id===id;});
+  
+   var boundfunc = updateAnimal.bind(filtered[0])
+   
+ return boundfunc("Trogdor");
+}
 
 
 // *************
@@ -28,7 +35,11 @@
 // return the result of your updateAnimal invocation
 
 // CODE HERE...
+function applyBinding(magicAnimals,updateAnimal,id){
+    var filtered = magicAnimals.filter((x)=>{return x.id===id});
+    return updateAnimal.apply(filtered[0],['being majestic', 'eating rainbows']);
 
+}
 
 
 // *************
@@ -48,7 +59,18 @@
 var foo;
 
 // CODE HERE...
+function promiseMe($q){
+    var deferred = $q.defer();
+    
+     setTimeout(function(){
+         foo='bar'; 
+         deferred.resolve(foo);
+        },20);
 
+
+       return deferred.promise;
+
+}
 
 
 // *************
@@ -64,3 +86,27 @@ var foo;
 // and then resolve the array as you complete your promise.
 
 // CODE HERE...
+function emailList($q,$http){
+    var deferred= $q.defer();
+    console.log("start emailList");
+  
+    $http.get('/api/users')
+    .then((res)=>{console.log("object returned");
+    console.log(res.data);
+    console.log(res.data.length);
+    console.log(res.data[0]);
+   
+    var emails = res.data.map((usr)=>{
+        console.log('mapping usr');
+        console.log(usr);
+        
+         return usr.email;
+        
+    });
+    console.log("DONE");
+    deferred.resolve(emails);
+});
+
+return deferred.promise;
+
+}

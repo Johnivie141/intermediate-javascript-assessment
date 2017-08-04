@@ -45,30 +45,33 @@ function daBears(){
 
 var fairyTale1 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
+fairyTale1=fairyTale1.filter((x) =>{return x==="papaBear" || x=== "mamaBear"});
+
 // Which function(s) access the "feeling" variable and get "Hungry"
 // (Delete wrong answers, leave correct ones)
 
 var fairyTale2 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
-
+fairyTale2=fairyTale2.filter((x) =>{return x==="goldilocks"});
 // Which function(s) access the "porridge" variable and get "Too Cold!"
 // (Delete wrong answers, leave correct ones)
 
 var fairyTale3 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
-
+fairyTale3=fairyTale3.filter((x) =>{return x==="mamaBear"});
 // Which function(s) access the "sleepy" variable and get undefined
 // (Delete wrong answers, leave correct ones)
 
 var fairyTale4 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
-
+fairyTale4=fairyTale4.filter((x) =>{return x!=="babyBear"});
 // Which function(s) access the isFurry variable and get true
 // (Delete wrong answers, leave correct ones)
 
 var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
-
+fairyTale5=fairyTale5.filter((x) =>{return x!=="goldilocks"});
 
 // *************
 // * PROBLEM 2 *
 // *************
+
 
 // Write a constructor function called Vehicle.  Vehicle should have a property
 // called gasRemaining that is equal to 100.
@@ -83,6 +86,19 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // CODE HERE...
 
+function Vehicle(){
+ this.gasRemaining=100;
+
+}
+Vehicle.prototype.drive=function(){
+ this.gasRemaining-=25;
+ // should check for negative values?
+}
+var charger = new Vehicle();
+var mustang = new Vehicle();
+charger.drive();
+mustang.drive();
+mustang.drive();
 
 
 
@@ -108,7 +124,15 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 
 // CODE HERE...
+String.prototype.grammarPolice = function(){
+  let str = "" + this;
 
+ 
+console.log("str1 "+str)
+  str= str.replace(/\b(\w)(\w*)\b/g,function(match,first,rest){ console.log("first " + first); console.log("rest " + rest);return first.toUpperCase() + rest.toLowerCase();});
+  console.log(str);
+  return str;
+}
 
 
 // *************
@@ -127,7 +151,11 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // CODE HERE...
 
-
+function valueType(param1,param2){
+  if (param1 === param2)return "Exactly the same";
+  if (param1 == param2) return "Same value, different types";
+  return "Different values";
+}
 
 // *************
 // * PROBLEM 5 *
@@ -141,3 +169,7 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 var theAnswer = "Unknown";
 
 // CODE HERE...
+function promiseCatcher(prom){
+  prom.then((res)=>theAnswer=res);
+
+}
