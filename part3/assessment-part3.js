@@ -88,22 +88,18 @@ function promiseMe($q){
 // CODE HERE...
 function emailList($q,$http){
     var deferred= $q.defer();
-    console.log("start emailList");
+   
   
     $http.get('/api/users')
-    .then((res)=>{console.log("object returned");
-    console.log(res.data);
-    console.log(res.data.length);
-    console.log(res.data[0]);
+    .then((res)=>{
    
     var emails = res.data.map((usr)=>{
-        console.log('mapping usr');
-        console.log(usr);
+        
         
          return usr.email;
         
     });
-    console.log("DONE");
+ 
     deferred.resolve(emails);
 });
 
